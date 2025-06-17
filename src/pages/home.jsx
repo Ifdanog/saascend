@@ -1,9 +1,10 @@
-import React from "react";
+import Hero from "../components/homepage/hero";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Hero />
+      {/* max-w-[1200px] mx-auto */}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const App = () => {
     <div>
       <Nav />
 
-      <div className="px-8">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
