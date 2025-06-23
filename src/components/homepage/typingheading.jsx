@@ -29,7 +29,7 @@ const TypingHeading = () => {
   }, [displayedText, isDeleting, index]);
 
   return (
-    <h1 className="w-full md:w-1/2 text-4xl font-black leading-tight">
+    <h1 className="w-full md:w-[60%] text-6xl font-bold leading-tight">
       Video Marketing <br /> Freelancer For{" "}
       <span className="text-blue-500">{displayedText}</span>
       <span className="animate-pulse">|</span>

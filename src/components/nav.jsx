@@ -7,7 +7,7 @@ const Nav = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-[#eee]/10 backdrop-blur-lg px-6 sm:px-8 py-4 shadow-md">
+    <nav className="bg-[#eee] px-8 lg:px-40 py-4 shadow-md">
       <div className="flex items-center justify-between">
         <h1 className="font-black text-xl">Saascend</h1>
 
