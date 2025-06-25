@@ -3,7 +3,7 @@ import HeadingText from "../headingtext";
 
 const Services = () => {
   return (
-    <div className="py-20 px-6 md:px-10 lg:px-40">
+    <div className="py-20 px-6 md:px-10 lg:px-40 bg-gray-100">
       <HeadingText title="Marketing Videos for Every Sector in Tech" />
 
       <p className="w-full lg:w-1/2 mx-auto text-center my-10">

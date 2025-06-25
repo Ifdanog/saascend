@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
 
 const tabs = ["LiveAction", "Animated", "Motion Graphics"];
+const hexToRgba = (hex, alpha) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 const workflows = {
   LiveAction: [
@@ -10,88 +16,95 @@ const workflows = {
       description:
         "We present a detailed overview of the steps and timelines for your project, and welcome you to Burnwe community",
       img: "/onboarding.webp",
-      toColor: "#ffe3d4",
-      fromColor: "#fff5ed",
+      toColor: "pink",
     },
     {
       title: "Scripting",
       description:
         "Based on a questionnaire you fill out, we craft a personalized video script, tailored to your branding, goals and video type",
-      img: "/scripting.png",
+      img: "/scripting.webp",
+      toColor: "blue",
     },
     {
       title: "Storyboard",
       description:
-        "We create a visual storyboard to illustrate the video’s storyline and the outcome",
-      img: "/storyboard.png",
+        "We create a visual storyboard to illustrate the video's storyline and the outcome",
+      img: "/storyboard.webp",
+      toColor: "orange",
     },
     {
       title: "Organizational Activities",
       description:
         "We meticulously organize every aspect, from selecting location, actors to coordinating wardrobe, makeup, set design, and all necessary props",
-      img: "/organization.png",
+      img: "/elgarreta.webp",
+      toColor: "pink",
     },
     {
       title: "Video Shooting",
       description:
         "Our professional team handles the initial setup, ensuring technical equipment is ready, and then begins the video shooting process",
-      img: "/shooting.png",
+      img: "/photo.webp",
+      toColor: "pink",
     },
     {
       title: "VO & Music",
       description:
         "We organize the voice-over recording from 200+ professionals in our database and then we combine it with the perfect music",
-      img: "/vo-music.png",
+      img: "/music.webp",
+      toColor: "orange",
     },
     {
       title: "Video Creation",
       description:
         "Finally, time for the video creation magic! We put all the elements together and bring your final video to life",
-      img: "/video-creation.png",
+      img: "/videocreation.webp",
+      toColor: "blue",
     },
   ],
   Animated: [
     {
       title: "Onboarding",
       description:
-        "We walk you through our animation pipeline and timeline, and introduce you to the team",
-      img: "/onboarding.png",
+        "We present a detailed overview of the steps and timelines for your project, and welcome you to Burnwe community",
+      img: "/onboarding.webp",
     },
     {
       title: "Scripting",
       description:
-        "Based on your brief, we write a compelling animation script tailored to your message",
-      img: "/scripting.png",
+        "Based on a questionnaire you fill out, we craft a personalized video script, tailored to your branding, goals and video type",
+      img: "/scripting.webp",
     },
     {
       title: "Storyboard",
       description:
-        "We sketch the keyframes and flow of the animation to align on visual storytelling",
-      img: "/storyboard.png",
+        "We create a visual storyboard to illustrate the video's storyline and the outcome",
+      img: "/storyboard.webp",
+    },
+    {
+      title: "Sketches",
+      description:
+        "For each scene in the video, we create detailed sketch drawings to showcase the initial picture",
+      img: "/sketch.webp",
+      toColor: "purple",
     },
     {
       title: "Illustration",
       description:
-        "Our illustrators design custom characters and scenes that match your brand identity",
-      img: "/illustration.png",
-    },
-    {
-      title: "Animation",
-      description:
-        "We animate the illustrations with smooth transitions and visual effects",
-      img: "/animation.png",
+        "We create custom illustrations that align with your branding and visualize each scene of the video in a static format",
+      img: "/illustration.webp",
+      toColor: "purple",
     },
     {
       title: "VO & Music",
       description:
-        "We record professional voice-over and add fitting music and sound design",
-      img: "/vo-music.png",
+        "We organize the voice-over recording from 200+ professionals in our database and then we combine it with the perfect  music",
+      img: "/music.webp",
     },
     {
       title: "Video Creation",
       description:
-        "We finalize the video by combining all visual and audio elements",
-      img: "/video-creation.png",
+        "Finally, time for the video creation magic! We put all the elements together and bring your final video to life",
+      img: "/videocreation.webp",
     },
   ],
   "Motion Graphics": [
@@ -99,30 +112,31 @@ const workflows = {
       title: "Onboarding",
       description:
         "We present a detailed overview of the steps and timelines for your project, and welcome you to Burnwe community",
-      img: "/onboarding.png",
+      img: "/onboarding.webp",
     },
     {
       title: "Scripting",
       description:
         "Based on a questionnaire you fill out, we craft a personalized video script, tailored to your branding, goals and video type",
-      img: "/scripting.png",
+      img: "/scripting.webp",
     },
     {
       title: "Storyboard",
       description:
-        "We create a visual storyboard to illustrate the video’s storyline and the outcome",
-      img: "/storyboard.png",
+        "We create a visual storyboard to illustrate the video's storyline and the outcome",
+      img: "/storyboard.webp",
     },
     {
       title: "VO & Music",
       description:
         "We organize the voice-over recording from 200+ professionals in our database and then we combine it with the perfect music",
-      img: "/vo-music.png",
+      img: "/music.webp",
     },
     {
       title: "Video Creation",
-      description: "Finally, time for the video",
-      img: "/video-creation.png",
+      description:
+        "Finally, time for the video creation magic! We put all the elements together and bring your final video to life",
+      img: "/videocreation.webp",
     },
   ],
 };
@@ -132,7 +146,7 @@ const VideoWorkflow = () => {
   const steps = workflows[activeTab];
 
   return (
-    <div className="bg-[#f9f7f6] px-6 py-12 text-center">
+    <div className="bg-gray-100 px-6 py-12 text-center">
       <h2 className="text-4xl font-bold text-black mb-8">
         Our Video Creation Workflow
       </h2>
@@ -161,23 +175,16 @@ const VideoWorkflow = () => {
             key={index}
             className="relative text-center max-w-xs flex flex-col items-center p-6 rounded-2xl transition-all duration-300"
           >
-            <div
-              className={`
-    relative overflow-visible border-2 border-white rounded-xl 
-    group pt-12
-  `}
-            >
-              {/* Gradient background */}
+            <div className="relative overflow-visible border-2 border-white rounded-xl pt-12">
+              {/* Gradient background with opacity overlay */}
               <div
-                className={`
-      absolute inset-0 
-      bg-gradient-to-b from-[${step.fromColor}] to-[${step.toColor}] 
-      grayscale opacity-40 
-      group-hover:grayscale-0 group-hover:opacity-100 
-      transition-all duration-300 
-      z-0 rounded-xl
-    `}
-              ></div>
+                className="absolute inset-0 rounded-xl"
+                style={{
+                  background: `linear-gradient(to bottom, #fff5ed, ${step.toColor})`,
+                  opacity: 0.4,
+                  zIndex: 0,
+                }}
+              />
 
               {/* Protruding Image */}
               <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 z-10 w-30 h-30">
@@ -198,11 +205,11 @@ const VideoWorkflow = () => {
 
             {/* Arrow or Checkmark */}
             {index < steps.length - 1 ? (
-              <div className="mt-6 text-gray-300 text-xl hidden lg:block">
+              <div className="mt-6 text-black text-xl hidden lg:block">
                 <FaArrowRight />
               </div>
             ) : (
-              <div className="mt-6 text-pink-500 text-xl">
+              <div className="mt-6 text-blue-500 text-xl">
                 <FaCheckCircle />
               </div>
             )}

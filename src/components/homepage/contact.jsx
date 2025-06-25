@@ -86,7 +86,7 @@ const Contact = () => {
         We mean it - just send us a Voice Message, sharing your story and goals.
         We'll get back to you from partner@saascend.com immediately
       </p>
-      <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+      <div className="w-3/4 mx-auto flex flex-col lg:flex-row justify-between items-center gap-10">
         <img src="/lets-talk.webp" alt="Let's Talk" className="max-w-sm" />
         <div className="bg-black rounded-lg px-10 py-8 w-full lg:w-[480px]">
           <h3 className="text-white text-xl pb-6">Voice Message</h3>
